@@ -1,6 +1,12 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { env } from 'hono/adapter';
+
+interface Env {
+  [key: string]: unknown;
+  DKIM_PRIVATE_KEY: string;
+}
+
 interface IBody {
   to: {
     email: string;
@@ -24,7 +30,7 @@ app.use('/*', cors());
 app.post('/api/send-email', async (ctx) => {
   const body: IBody = await ctx.req.json();
 
-  const { DKIM_PRIVATE_KEY } = env<{ DKIM_PRIVATE_KEY: string }>(ctx);
+  const { DKIM_PRIVATE_KEY } = env<Env>(ctx);
 
   const bodyToSend = {
     personalizations: [
