@@ -64,50 +64,46 @@ app.post('/api/send-email', async (ctx) => {
 
 export default app;
 
-// export default {
-//   async fetch(
-//     request: Request,
-//     env: Env,
-//     ctx: ExecutionContext
-//   ): Promise<Response> {
-//     if (request.method !== 'POST') {
-//       return new Response('Method Not Allowed', { status: 405 });
-//     }
-
-//     const recipient = 'mauromamani.b@gmail.com';
-
-//     const body = {
-//       personalizations: [
-//         {
-//           to: [{ email: recipient, name: 'mauromamani' }],
-//           dkim_domain: 'mauromamani.store',
-//           dkim_selector: 'mailchannels',
-//           dkim_private_key: env.DKIM_PRIVATE_KEY,
-//         },
-//       ],
-//       from: {
-//         email: 'info@mauromamani.store',
-//         name: 'INFO',
-//       },
-//       subject: 'Look! No servers',
-//       content: [
-//         {
-//           type: 'text/plain',
-//           value: 'And no email service accounts and all for free too!',
-//         },
-//       ],
-//     };
-
-//     const response = await fetch('https://api.mailchannels.net/tx/v1/send', {
-//       method: 'POST',
-//       headers: {
-//         'content-type': 'application/json',
-//       },
-//       body: JSON.stringify(body),
-//     });
-
-//     const respText = await response.text();
-
-//     return new Response(respText || 'ok');
+// const aas = {
+//   "to": {
+//     "email": "rubencruz72@gmail.com",
+//     "name": "Ruben Cruz"
 //   },
-// };
+//   "from": {
+//     "email": "noreply@mauromamani.store",
+//     "name": "Urgent"
+//   },
+//   "subject": "Notice!!!",
+//   "content": [
+//     {
+//       "type": "text/html",
+//       "value": "<h1 style='color:red;'>Hi Amigo</h1> <p>And no email service accounts and all for free too!</p>"
+
+//     }
+//   ]
+// }
+
+/*
+------------------
+ EXAMPLE OF BODY
+------------------
+
+{
+  "to": {
+    "email": "rubencruz72@gmail.com",
+    "name": "Ruben Cruz"
+  },
+  "from": {
+    "email": "noreply@mauromamani.store",
+    "name": "Urgent"
+  },
+  "subject": "Notice!!!",
+  "content": [
+    {
+      "type": "text/plain",
+      "value": "And no email service accounts and all for free too!"
+    }
+  ]
+}
+
+*/
